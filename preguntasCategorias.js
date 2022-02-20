@@ -1,6 +1,7 @@
 
 const categorias = [
     {
+        class : "fiction-category-container",
         nombre : "Ciencia ficcion",
         descripcion : "Que tanto sabes de juego de tronos? A ponerte a prueba!",
         preguntas:[
@@ -24,11 +25,14 @@ const categorias = [
                     "Lo atravieza con su espada Jaime lannister"
                 ]
             }
+            
         ]
     },
     {
+        class:"anime-category-container",
         nombre : "Anime",
         descripcion : "Que tanto sabes de One piece? A ponerte a prueba!",
+        
         preguntas:[
             {
                 pregunta: "Cuantos hermanos jurados tiene Monkey D. Luffy?",
@@ -53,3 +57,5 @@ const categorias = [
         ]
     }
 ]
+
+
