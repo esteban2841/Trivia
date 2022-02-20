@@ -7,10 +7,13 @@ function getInputValue (){
     }
 }
 
-function showCategories(){
+function showDivChose( divToShow ){
     if(nickName !== ""){
         divMainContainer.classList.add("hidden")
-        divCategories.classList.remove("hidden")
+        divCategories.classList.add("hidden")
+        divQuestionsContainer.classList.add("hidden")
+
+        divToShow.classList.remove("hidden")
     }
 
     
@@ -54,7 +57,7 @@ function createCategory(category){
     
     buttonListener(categoryNode, ".button-player-name", ()=>{
         displayQuestion(category);
-        showQuestions();
+        showDivChose(divQuestionsContainer)
     });
     
     return categoryNode
@@ -117,22 +120,17 @@ function createQuestions ( pregunta, categoria ){
             sumPreguntaActiva()
             displayQuestion(categoria)
         }else{
-            console.log("categories")
-            showCategories()
-
+            
+            showDivChose(divCategories)
+            preguntaActiva = 0
         }
     })
 
     return questionNode
 }
 
-function showQuestions(){
-    divCategories.classList.add("hidden");
-    // preguntas.shift()
-    divQuestionsContainer.classList.remove("hidden")
 
 
-}
 
 const selectedCategory = {};
 
@@ -194,5 +192,6 @@ displayCategories(categorias);
     //retornar el div creado
 
 buttonHideFirstPanel.addEventListener("click",getInputValue)
-buttonHideFirstPanel.addEventListener("click",showCategories)
+buttonHideFirstPanel.addEventListener("click",()=>{showDivChose(divCategories)}
+)
 
