@@ -9,6 +9,7 @@ const categorias = [
                 pregunta: "Quien asesina a Tommen Baratheon en la 6ta temporada?",
                 puntaje : 100,
                 index : 0,
+                respuestaCorrecta: 2,
                 respuestas : [
                     "Lo asesina la reina marjory, utilizando un veneno de varys",
                     "Es asesinado por daenarys Targeryan ordenandole a drogon que lo incinere",
@@ -19,6 +20,7 @@ const categorias = [
                 pregunta: "Como es asesinado Ned Stark en la primera temporada?",
                 puntaje : 100,
                 index : 1,
+                respuestaCorrecta: 1,
                 respuestas : [
                     "Sandor clegane (alias el sabuezo), le realiza una cortada en su hombro que se infecta y muere eventualmente",
                     "A peticion de Jofrey y ejecutado por Lyll payne",
@@ -38,6 +40,7 @@ const categorias = [
                 pregunta: "Cuantos hermanos jurados tiene Monkey D. Luffy?",
                 puntaje : 100,
                 index : 0,
+                respuestaCorrecta: 1,
                 respuestas : [
                     "Es hijo unico",
                     "Tiene dos hermanos, Portgas D. Ace y Sabo",
@@ -47,6 +50,7 @@ const categorias = [
             {
                 pregunta: "Quien inspira a luffy a ser pirata?",
                 puntaje : 100,
+                respuestaCorrecta: 0,
                 index : 1,
                 respuestas : [
                     "Lo inspira Shanks el peli rojo, cuando lo salva de morir",

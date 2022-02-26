@@ -21,3 +21,10 @@ body{
 .hidden{
     display : none
 }
+
+.answer{
+    
+    background-color: rgb(196, 199, 179);
+    border-radius: 5px;
+
+}

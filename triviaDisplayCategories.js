@@ -12,7 +12,7 @@ function showDivChose( divToShow ){
         divMainContainer.classList.add("hidden")
         divCategories.classList.add("hidden")
         divQuestionsContainer.classList.add("hidden")
-
+        divResultado.classList.add("hidden")
         divToShow.classList.remove("hidden")
     }
 
@@ -66,6 +66,8 @@ function createCategory(category){
 
 
 
+
+
 function buttonListener( node, butonClass, functionToExecute) {
     //la funcion buton listener recibira una clase de un boton para seleccionar y devolvera un evento
 
@@ -89,16 +91,51 @@ function displayQuestion(categoria){
         const newDivQuestion = createQuestions( pregunta, categoria)
        
         divQuestionsContainer.appendChild(newDivQuestion)
-   
+        
+    
 
 }
 
+// function divChildrenListener(divSelected){
+//     let container = document.querySelector(divSelected)
+//     console.log(container)
+//     container.addEventListener("click", (evento)=>{
+//         if(evento.target.classList.contains(categoria.preguntas[respuestaCorrecta])){
+//             resultado += 1;
+
+            
+//         }
+       
+//     })
+// }
+function displayDivResultado(){
+    let span = document.createElement("span")
+    let botoncito = document.createElement("button")
+    botoncito.className = "buton-return-categories"
+    botoncito.textContent= "Return to Categories"
+    span.innerText = `${nickName} tu puntaje es ${resultado} `
+    divResultado.appendChild(span)
+    divResultado.appendChild(botoncito)
+    preguntaActiva = 0
+    buttonListener(divResultado, ".buton-return-categories", ()=>{
+        showDivChose(divCategories)
+        resultado = 0
+    })
+    
+}
 
 function sumPreguntaActiva(){
     preguntaActiva += 1
    
 }
-
+function sumResultado(pregunta, respuestaClickeada){
+    // pregunta es una lista
+    // respuestaClickeada es un entero que viene de seleccionar el boton y acceder a la propiedad data-index
+    if(pregunta.respuestaCorrecta == respuestaClickeada){
+        resultado = resultado + pregunta.puntaje
+    }
+    
+}
 function createQuestions ( pregunta, categoria ){
     const questionNode = document.createElement('div')
     
@@ -107,32 +144,47 @@ function createQuestions ( pregunta, categoria ){
                             <p class= "question">
                                 ${pregunta.pregunta}
                             </p>
-                            <p class= "answer">
-                                ${pregunta.respuestas}
-                            </p>
-                            <button class="btn-next-question">Next question</button>
-
+                            <button data-index="0" class="answer-button" >
+                                ${pregunta.respuestas[0]}
+                            </button>
+                            <button data-index="1" class="answer-button" >
+                                ${pregunta.respuestas[1]}
+                            </button>
+                            <button data-index= "2" class="answer-button" >
+                                ${pregunta.respuestas[2]}
+                            </button>
+                            
     `
-    questionNode.innerHTML = questionString
-    buttonListener(questionNode, ".btn-next-question", ()=> {
-        if(preguntaActiva < categoria.preguntas.length-1 ){
-            console.log("questions")
-            sumPreguntaActiva()
-            displayQuestion(categoria)
-        }else{
-            
-            showDivChose(divCategories)
-            preguntaActiva = 0
-        }
-    })
 
+    questionNode.innerHTML = questionString
+
+   
+    let btns= questionNode.querySelectorAll(".answer-button");
+        btns.forEach((btn )=>{
+            btn.addEventListener("click", (ev)=>{
+            let selectedAnswerIndex = ev.target.dataset.index;
+            sumResultado(pregunta, selectedAnswerIndex);
+            if(preguntaActiva < categoria.preguntas.length-1 ){
+        
+                sumPreguntaActiva()
+                displayQuestion(categoria)
+                
+            }else{
+                displayDivResultado()
+                showDivChose(divResultado)
+                
+            }
+            // if(selectedAnswerIndex == pregunta.respuestaCorrecta){
+            //     resultado = resultado + pregunta.puntaje;
+            // }
+        })
+    })
+    
+    
     return questionNode
 }
 
 
-
-
-const selectedCategory = {};
 
 
 //cuando se seleccione el boton debe crear la pregunta 1 de cateroria 0
